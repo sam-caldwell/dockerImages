@@ -5,12 +5,12 @@ orbs:
   docker: circleci/docker@1.5.0
 
 workflows:
-  build-docker-image-only:
+  build-images:
     jobs:
-      - check-and-build-only
+      - build
 
 jobs:
-  prepwork:
+  build:
     machine: true
     steps:
       - run: ./build.py --os Ubuntu --os_version 20.04 --language python --language_version 3.9.1 --repo $CIRCLE_PROJECT_USERNAME
