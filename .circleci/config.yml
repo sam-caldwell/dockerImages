@@ -10,12 +10,16 @@ workflows:
       - check-and-build-only
 
 jobs:
+  prepwork:
+    steps:
+      - run: REPO_NAME=$(echo ${$CIRCLE_PROJECT_USERNAME} | tr A-Z a-z)
+      - run: IMAGE_NAME=$(echo ${$CIRCLE_PROJECT_REPONAME} | tr A-Z a-z)
   check-and-build-only:
     executor: docker/machine
     steps:
       - checkout
       - docker/check
       - docker/build:
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          image: $REPO_NAME/$IMAGE_NAME
           path: docker/opsys/ubuntu/20.04
           # registry: my.docker.registry
