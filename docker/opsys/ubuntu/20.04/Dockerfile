@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:20_04
 
 RUN apt-get update -y --fix-missing && \
     apt-get upgrade -y

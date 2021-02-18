@@ -4,11 +4,14 @@ version: 2.1
 orbs:
   docker: circleci/docker@1.5.0
 
+workflows:
+  build-docker-image-only:
+    jobs:
+      - check-and-build-only
+
 jobs:
   check-and-build-only:
     executor: docker/machine
-    environment:
-      DOCKER_LOGIN: ""
     steps:
       - checkout
       - docker/check
@@ -16,8 +19,3 @@ jobs:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           path: docker/opsys/ubuntu/20.04
           # registry: my.docker.registry
-
-workflows:
-  build-docker-image-only:
-    jobs:
-      - check-and-build-only
