@@ -14,7 +14,8 @@ jobs:
     steps:
       - run: export REPO_NAME=$(echo ${$CIRCLE_PROJECT_USERNAME} | tr A-Z a-z)
       - run: export IMAGE_NAME=$(echo ${$CIRCLE_PROJECT_REPONAME} | tr A-Z a-z)
-      - run: echo "Image: ${REPO_NAME}/${IMAGE_NAME}"
+      - run: echo "Image=${REPO_NAME}/${IMAGE_NAME}"
+
   check-and-build-only:
     executor: docker/machine
     steps:
