@@ -12,16 +12,4 @@ workflows:
 jobs:
   prepwork:
     steps:
-      - run: export REPO_NAME=$(echo ${$CIRCLE_PROJECT_USERNAME} | tr A-Z a-z)
-      - run: export IMAGE_NAME=$(echo ${$CIRCLE_PROJECT_REPONAME} | tr A-Z a-z)
-      - run: echo "Image=${REPO_NAME}/${IMAGE_NAME}"
-
-  check-and-build-only:
-    executor: docker/machine
-    steps:
-      - checkout
-      - docker/check
-      - docker/build:
-          image: ${REPO_NAME}/${IMAGE_NAME}
-          path: docker/opsys/ubuntu/20.04
-          # registry: my.docker.registry
+      - run: ./build.py --os Ubuntu --os_version 20.04 --language python --language_version 3.9.1 --repo $CIRCLE_PROJECT_USERNAME
