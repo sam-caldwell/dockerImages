@@ -12,8 +12,9 @@ workflows:
 jobs:
   prepwork:
     steps:
-      - run: REPO_NAME=$(echo ${$CIRCLE_PROJECT_USERNAME} | tr A-Z a-z)
-      - run: IMAGE_NAME=$(echo ${$CIRCLE_PROJECT_REPONAME} | tr A-Z a-z)
+      - run: export REPO_NAME=$(echo ${$CIRCLE_PROJECT_USERNAME} | tr A-Z a-z)
+      - run: export IMAGE_NAME=$(echo ${$CIRCLE_PROJECT_REPONAME} | tr A-Z a-z)
+      - run: echo "${REPO_NAME}/${IMAGE_NAME}"
   check-and-build-only:
     executor: docker/machine
     steps:
