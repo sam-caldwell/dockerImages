@@ -20,6 +20,6 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: $REPO_NAME/$IMAGE_NAME
+          image: ${REPO_NAME}/${IMAGE_NAME}
           path: docker/opsys/ubuntu/20.04
           # registry: my.docker.registry
