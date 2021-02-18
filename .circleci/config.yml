@@ -13,4 +13,5 @@ jobs:
   build:
     machine: true
     steps:
+      - run: ls -la
       - run: ./build.py --os Ubuntu --os_version 20.04 --language python --language_version 3.9.1 --repo $CIRCLE_PROJECT_USERNAME
