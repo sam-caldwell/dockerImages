@@ -99,6 +99,15 @@ USER service
 #
 FROM java_1_11 as java
 #
+# Node 14.15.4
+#
+FROM ubuntu_latest as node_14_15_4
+USER root
+RUN apt-get install -y --no-install-recommends ca-certificates nodejs npm && \
+    npm install node@14.15.4
+USER service
+
+#
 # Node 15.1.0
 #
 FROM ubuntu_latest as node_15_1_0
